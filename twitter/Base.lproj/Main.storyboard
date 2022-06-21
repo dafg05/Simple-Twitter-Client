@@ -54,6 +54,46 @@
             </objects>
             <point key="canvasLocation" x="32.799999999999997" y="37.331334332833585"/>
         </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="gWY-eY-zBw">
+            <objects>
+                <viewController id="T2l-8H-SDg" customClass="ComposeViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i8T-m6-pmS">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write your tweet here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-Ot-Mns">
+                                <rect key="frame" x="0.0" y="44" width="375" height="204"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="ZsV-ed-ypz"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="8nh-RQ-kt8">
+                        <barButtonItem key="leftBarButtonItem" title="Close" id="Ylf-Hi-BXr">
+                            <connections>
+                                <action selector="closeCompose:" destination="T2l-8H-SDg" id="auT-Xj-Hp7"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Tweet" id="U04-ZL-40d">
+                            <connections>
+                                <action selector="sendTweet:" destination="T2l-8H-SDg" id="hUV-d0-hSO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="composeTextView" destination="ndF-Ot-Mns" id="npG-hh-3L0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZGU-TU-FyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2420" y="-674"/>
+        </scene>
         <!--Timeline View Controller-->
         <scene sceneID="1Tv-nE-1AW">
             <objects>
@@ -200,9 +240,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="MOc-fV-EZE">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="NjE-bJ-ebj">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="NjE-bJ-ebj">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Juj-0o-O4J">
-                                <rect key="frame" x="281.5" y="11" width="77.5" height="34.5"/>
+                                <rect key="frame" x="16" y="11" width="77.5" height="34.5"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="plain" title="Logout"/>
@@ -210,6 +250,11 @@
                                     <action selector="didTapLogout:" destination="Lbl-k5-U4i" eventType="touchUpInside" id="NwM-co-x1u"/>
                                 </connections>
                             </button>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Compose" id="ZWg-kb-O5F">
+                            <connections>
+                                <segue destination="vCS-Bl-gj6" kind="presentation" id="Yr8-gv-cKc"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -238,9 +283,30 @@
             </objects>
             <point key="canvasLocation" x="860" y="36.431784107946029"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Y5A-pT-4XF">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vCS-Bl-gj6" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="6aM-Th-13t">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="T2l-8H-SDg" kind="relationship" relationship="rootViewController" id="kl6-GI-fTd"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZUt-Zt-a6R" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1660" y="-674"/>
+        </scene>
     </scenes>
     <resources>
         <image name="TwitterLogoBlue" width="200" height="200"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
