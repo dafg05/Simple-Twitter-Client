@@ -24,16 +24,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Get timeline
-    // TODO: Ask about syntax of this call
     self.tweetView.dataSource = self;
+    
+    //refresh control
+    UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(beginRefresh:) forControlEvents:UIControlEventValueChanged];
+    [self.tweetView insertSubview:refreshControl atIndex:0];
+    
+    // TODO: Ask about syntax of this call
+    // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-            for (Tweet *tweet in tweets) {
-                NSString *text = tweet.text;
-                NSLog(@"%@", text);
-            }
+//            for (Tweet *tweet in tweets) {
+//                NSString *text = tweet.text;
+//                NSLog(@"%@", text);
+//            }
             self.arrayOfTweets = (NSMutableArray*) tweets;
             [self.tweetView reloadData];
         } else {
@@ -95,6 +101,20 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     NSLog(@"%lu", self.arrayOfTweets.count);
     return self.arrayOfTweets.count;
+}
+
+- (void)beginRefresh:(UIRefreshControl *)refreshControl {
+    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
+        if (tweets) {
+            NSLog(@"😎😎😎 Successfully refreshed home timeline");
+            self.arrayOfTweets = (NSMutableArray*) tweets;
+            [self.tweetView reloadData];
+            [refreshControl endRefreshing];
+        } else {
+            NSLog(@"😫😫😫 Error getting home timeline: %@", error.localizedDescription);
+        }
+    }];
+    return;
 }
 
 /*
