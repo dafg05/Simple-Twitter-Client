@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
+@property (weak, nonatomic) Tweet *tweet;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 // TODO: add screen name
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
@@ -25,6 +26,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (weak, nonatomic) IBOutlet UIImageView *userProfilePic;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+
+- (void)refreshData;
 
 @end
 

@@ -158,6 +158,9 @@
                                                     <rect key="frame" x="145.5" y="62" width="73" height="31"/>
                                                     <state key="normal" title="Button"/>
                                                     <buttonConfiguration key="configuration" style="plain" title="Favbutt"/>
+                                                    <connections>
+                                                        <action selector="didTapFavorite:" destination="9qe-m1-dJt" eventType="touchUpInside" id="sqB-dA-YRP"/>
+                                                    </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="favcnt" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HqQ-UO-zXy">
                                                     <rect key="frame" x="218.5" y="62" width="30" height="31"/>

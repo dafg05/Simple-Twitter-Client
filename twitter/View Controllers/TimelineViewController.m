@@ -66,6 +66,7 @@
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell" forIndexPath:indexPath];
     // get tweet
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
+    cell.tweet = tweet;
     // set up everything text
     cell.userLabel.text = tweet.user.name;
     cell.screenNameLabel.text = tweet.user.screenName;
