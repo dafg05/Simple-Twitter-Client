@@ -217,16 +217,16 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="createdAtLabel" destination="wBc-iL-lri" id="Gv2-mo-LLB"/>
-                                            <outlet property="favButton" destination="o3l-53-b9S" id="ojX-gq-XVA"/>
-                                            <outlet property="favCountLabel" destination="HqQ-UO-zXy" id="HxM-3a-27O"/>
-                                            <outlet property="replyButton" destination="eBh-no-2cA" id="XTV-2Y-r1Y"/>
-                                            <outlet property="retweetButton" destination="TB1-eT-X2g" id="xoF-zJ-ule"/>
-                                            <outlet property="retweetCountLabel" destination="afn-VG-jRO" id="sYN-eU-Thh"/>
-                                            <outlet property="screenNameLabel" destination="qer-ig-FXt" id="aNc-tJ-M1C"/>
-                                            <outlet property="tweetText" destination="5Q6-lL-bo2" id="OuO-02-q6r"/>
-                                            <outlet property="userLabel" destination="vE9-pU-e8z" id="osM-ou-Rdc"/>
-                                            <outlet property="userProfilePic" destination="YVM-xR-oNr" id="1ha-Ft-2Sx"/>
+                                            <outlet property="createdAtLabel" destination="wBc-iL-lri" id="Q9V-Am-q6a"/>
+                                            <outlet property="favButton" destination="o3l-53-b9S" id="QBh-4Y-6T7"/>
+                                            <outlet property="favCountLabel" destination="HqQ-UO-zXy" id="ljh-WR-W1H"/>
+                                            <outlet property="replyButton" destination="eBh-no-2cA" id="bdc-mC-nC9"/>
+                                            <outlet property="retweetButton" destination="TB1-eT-X2g" id="22G-lE-Wgp"/>
+                                            <outlet property="retweetCountLabel" destination="afn-VG-jRO" id="Z44-Q5-B5E"/>
+                                            <outlet property="screenNameLabel" destination="qer-ig-FXt" id="Szo-Cl-kaH"/>
+                                            <outlet property="tweetText" destination="5Q6-lL-bo2" id="iNl-MI-HSs"/>
+                                            <outlet property="userLabel" destination="vE9-pU-e8z" id="Pd6-oH-utX"/>
+                                            <outlet property="userProfilePic" destination="YVM-xR-oNr" id="Cq4-re-RPG"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

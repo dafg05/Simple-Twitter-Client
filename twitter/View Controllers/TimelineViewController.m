@@ -67,35 +67,8 @@
     // get tweet
     Tweet *tweet = self.arrayOfTweets[indexPath.row];
     cell.tweet = tweet;
-    // set up everything text
-    cell.userLabel.text = tweet.user.name;
-    cell.screenNameLabel.text = tweet.user.screenName;
-    cell.createdAtLabel.text = tweet.createdAtString;
-    cell.tweetText.text = tweet.text;
-    cell.retweetCountLabel.text = [NSString stringWithFormat:@"%i",tweet.retweetCount];
-    cell.favCountLabel.text = [NSString stringWithFormat:@"%i",tweet.favoriteCount];
     
-    // profile pic
-    NSString *URLString = tweet.user.profilePicture;
-    NSURL *url = [NSURL URLWithString:URLString];
-    NSData *urlData = [NSData dataWithContentsOfURL:url];
-    cell.userProfilePic.image = [UIImage imageWithData:urlData];
-    
-    // BUTTONS
-    // retweet
-    UIImage *retweetImage = [UIImage imageNamed:@"retweet-icon.png"];
-    [cell.retweetButton setImage:retweetImage forState:UIControlStateNormal];
-    [cell.retweetButton setTitle:@"" forState:UIControlStateNormal];
-    
-    // favorite
-    UIImage *favImage = [UIImage imageNamed:@"favor-icon.png"];
-    [cell.favButton setImage:favImage forState:UIControlStateNormal];
-    [cell.favButton setTitle:@"" forState:UIControlStateNormal];
-    
-    // reply
-    UIImage *replyImage = [UIImage imageNamed:@"reply-icon.png"];
-    [cell.replyButton setImage:replyImage forState:UIControlStateNormal];
-    [cell.replyButton setTitle:@"" forState:UIControlStateNormal];
+    [cell refreshData];
     
     return cell;
 }
@@ -120,7 +93,7 @@
 }
 
 - (void)didTweet:(Tweet *)tweet{
-    [self.arrayOfTweets addObject:tweet];
+    [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tweetView reloadData];
 }
 

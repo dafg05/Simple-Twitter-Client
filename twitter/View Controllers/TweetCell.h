@@ -12,20 +12,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @interface TweetCell : UITableViewCell
+
 @property (weak, nonatomic) Tweet *tweet;
-@property (weak, nonatomic) IBOutlet UILabel *userLabel;
-// TODO: add screen name
-@property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tweetText;
-// TODO: add timestamp
-// TODO: add images for buttons
-@property (weak, nonatomic) IBOutlet UIButton *retweetButton;
-@property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
-@property (weak, nonatomic) IBOutlet UIButton *favButton;
-@property (weak, nonatomic) IBOutlet UILabel *favCountLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *userProfilePic;
-@property (weak, nonatomic) IBOutlet UIButton *replyButton;
-@property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 
 - (void)refreshData;
 
