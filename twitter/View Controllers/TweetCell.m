@@ -7,6 +7,7 @@
 //
 
 #import "TweetCell.h"
+#import "APIManager.h"
 
 @interface TweetCell ()
 
@@ -39,12 +40,36 @@
     // Configure the view for the selected state
 }
 - (IBAction)didTapFavorite:(id)sender {
-    // TODO: Update the local tweet model
+    // Update the local tweet model
     self.tweet.favorited = YES;
     self.tweet.favoriteCount += 1;
-    // TODO: Update cell UI
+    // Update cell UI
     [self refreshData];
-    // TODO: Send a POST request to the POST favorites/create endpoint
+    // Send a POST request to the POST favorites/create endpoint
+    [[APIManager shared] favorite:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error favoriting tweet: %@", error.localizedDescription);
+         }
+         else{
+             NSLog(@"Successfully favorited the following Tweet: %@", tweet.text);
+         }
+     }];
+}
+- (IBAction)didTapRetweet:(id)sender {
+    // Update the local tweet model
+    self.tweet.retweeted = YES;
+    self.tweet.retweetCount += 1;
+    // Update cell UI
+    [self refreshData];
+    //Send a POST request to the POST retweets/create endpoint
+    [[APIManager shared] retweet:self.tweet completion:^(Tweet *tweet, NSError *error) {
+         if(error){
+              NSLog(@"Error retweeting tweet: %@", error.localizedDescription);
+         }
+         else{
+             NSLog(@"Successfully retweeted the following Tweet: %@", tweet.text);
+         }
+     }];
 }
 
 
