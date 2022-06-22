@@ -13,9 +13,10 @@
 #import "Tweet.h"
 #import "TweetCell.h"
 #import "ComposeViewController.h"
+#import "TweetDetailsViewController.h"
 
 
-@interface TimelineViewController () <UITableViewDataSource, ComposeViewControllerDelegate>
+@interface TimelineViewController () <UITableViewDataSource, ComposeViewControllerDelegate, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tweetView;
 @property (nonatomic, strong) NSMutableArray *arrayOfTweets;
 @end
@@ -26,6 +27,7 @@
     [super viewDidLoad];
     
     self.tweetView.dataSource = self;
+    self.tweetView.delegate = self;
     
     //refresh control
     UIRefreshControl *refreshControl = [[UIRefreshControl alloc] init];
@@ -37,10 +39,6 @@
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
             NSLog(@"😎😎😎 Successfully loaded home timeline");
-//            for (Tweet *tweet in tweets) {
-//                NSString *text = tweet.text;
-//                NSLog(@"%@", text);
-//            }
             self.arrayOfTweets = (NSMutableArray*) tweets;
             [self.tweetView reloadData];
         } else {
@@ -96,6 +94,15 @@
     [self.arrayOfTweets insertObject:tweet atIndex:0];
     [self.tweetView reloadData];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    UINavigationController *navigationController = self.navigationController;
+         TweetDetailsViewController *viewController = [self.storyboard instantiateViewControllerWithIdentifier:@"TweetDetailsViewController"];
+    viewController.tweet = self.arrayOfTweets[indexPath.row];
+        [navigationController pushViewController: viewController animated:YES];
+    
+}
+
 
 
 #pragma mark - Navigation

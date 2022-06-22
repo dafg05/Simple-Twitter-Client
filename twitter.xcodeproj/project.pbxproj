@@ -3,11 +3,12 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		2906D11028625E7900F7DE84 /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2906D10F28625E7900F7DE84 /* ComposeViewController.m */; };
+		2970F47E2863BFC3005B8358 /* TweetDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2970F47D2863BFC3005B8358 /* TweetDetailsViewController.m */; };
 		298CB7322861120900A0C424 /* Keys.plist in Resources */ = {isa = PBXBuildFile; fileRef = 298CB7312861120900A0C424 /* Keys.plist */; };
 		298CB73528611E9700A0C424 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = 298CB73428611E9700A0C424 /* User.m */; };
 		298CB73828611F9100A0C424 /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = 298CB73728611F9100A0C424 /* Tweet.m */; };
@@ -28,6 +29,8 @@
 		1397EA94AE1DE5F26C1724FD /* Pods-twitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-twitter.release.xcconfig"; path = "Pods/Target Support Files/Pods-twitter/Pods-twitter.release.xcconfig"; sourceTree = "<group>"; };
 		2906D10E28625E7900F7DE84 /* ComposeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
 		2906D10F28625E7900F7DE84 /* ComposeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		2970F47C2863BFC3005B8358 /* TweetDetailsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TweetDetailsViewController.h; sourceTree = "<group>"; };
+		2970F47D2863BFC3005B8358 /* TweetDetailsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TweetDetailsViewController.m; sourceTree = "<group>"; };
 		298CB7312861120900A0C424 /* Keys.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Keys.plist; sourceTree = "<group>"; };
 		298CB73328611E9700A0C424 /* User.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		298CB73428611E9700A0C424 /* User.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
@@ -144,6 +147,8 @@
 		6AD2790320BCC01B0085BC29 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				2970F47C2863BFC3005B8358 /* TweetDetailsViewController.h */,
+				2970F47D2863BFC3005B8358 /* TweetDetailsViewController.m */,
 				29C2FD0C286225790004236A /* TweetCell.h */,
 				29C2FD0D286225790004236A /* TweetCell.m */,
 				2906D10E28625E7900F7DE84 /* ComposeViewController.h */,
@@ -279,6 +284,7 @@
 				6AD278F320BCA6020085BC29 /* BDBOAuth1SessionManager+SFAuthenticationSession.m in Sources */,
 				298CB73528611E9700A0C424 /* User.m in Sources */,
 				6AD278E820BC4B970085BC29 /* main.m in Sources */,
+				2970F47E2863BFC3005B8358 /* TweetDetailsViewController.m in Sources */,
 				2906D11028625E7900F7DE84 /* ComposeViewController.m in Sources */,
 				298CB73828611F9100A0C424 /* Tweet.m in Sources */,
 				6AD2790620BCC0380085BC29 /* LoginViewController.m in Sources */,
