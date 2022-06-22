@@ -77,9 +77,15 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
-- (void)favorite:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
-
-    NSString *urlString = @"1.1/favorites/create.json";
+- (void)favoriteToggle:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
+    NSString *urlString;
+    if (tweet.favorited){
+        urlString = @"1.1/favorites/destroy.json";
+    }
+    else{
+        urlString = @"1.1/favorites/create.json";
+    }
+    
     NSDictionary *parameters = @{@"id": tweet.idStr};
     [self POST:urlString parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSDictionary *  _Nullable tweetDictionary) {
         Tweet *tweet = [[Tweet alloc]initWithDictionary:tweetDictionary];
@@ -89,9 +95,15 @@ static NSString * const baseURLString = @"https://api.twitter.com";
     }];
 }
 
-- (void)retweet:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
-    
-    NSString *formerUrlString = @"1.1/statuses/retweet/";
+- (void)retweetToggle:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion {
+    // Construct the URL string by concatenating
+    NSString *formerUrlString;
+    if (tweet.retweeted){
+        formerUrlString = @"1.1/statuses/unretweet/";
+    }
+    else{
+        formerUrlString = @"1.1/statuses/retweet/";
+    }
     NSString *latterUrlString = @".json";
     NSString *urlString = [NSString stringWithFormat:@"%@%@%@", formerUrlString, tweet.idStr, latterUrlString];
     NSDictionary *parameters = @{@"id": tweet.idStr};
