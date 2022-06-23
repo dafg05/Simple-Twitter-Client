@@ -11,8 +11,7 @@
 #import "Tweet.h"
 
 
-
-@interface ComposeViewController ()
+@interface ComposeViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *composeTextView;
 
@@ -22,7 +21,18 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.composeTextView.delegate = self;
+    
     // Do any additional setup after loading the view.
+}
+
+- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // TODO: Check the proposed new text character count
+    int characterLimit = 140;
+    NSString *newText = [self.composeTextView.text stringByReplacingCharactersInRange:range withString:text];
+    
+    // TODO: Allow or disallow the new text
+    return newText.length < characterLimit;
 }
 
 /*

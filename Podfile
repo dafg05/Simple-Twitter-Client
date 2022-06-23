@@ -9,6 +9,7 @@ target 'twitter' do
   pod 'AFNetworking'
   pod 'BDBOAuth1Manager'
   pod 'DateTools'
+  pod 'RSKPlaceholderTextView'
 end
 
 post_install do |installer|

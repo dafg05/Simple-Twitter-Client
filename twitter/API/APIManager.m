@@ -29,9 +29,6 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 - (instancetype)init {
     
     NSURL *baseURL = [NSURL URLWithString:baseURLString];
-    
-    // TODO: fix code below to pull API Keys from your new Keys.plist file
-    
     NSString *path = [[NSBundle mainBundle] pathForResource: @"Keys" ofType: @"plist"];
     NSDictionary *dict = [NSDictionary dictionaryWithContentsOfFile: path];
     NSString *key = [dict objectForKey: @"consumer_Key"];
@@ -60,6 +57,20 @@ static NSString * const baseURLString = @"https://api.twitter.com";
            // Success
            NSMutableArray *tweets = [Tweet tweetsWithArray:tweetDictionaries];
            completion(tweets, nil);
+       } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+           // There was a problem
+           completion(nil, error);
+    }];}
+
+- (void)getHomeTimelineAfterTweet:(Tweet *)lastTweet completion:(void(^)(NSArray *moreTweets, NSError *error))completion {
+    
+    NSDictionary *parameters = @{@"since_id": lastTweet.idStr};
+    // Create a GET Request
+    [self GET:@"1.1/statuses/home_timeline.json"
+       parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
+           // Success
+           NSMutableArray *moreTweets = [Tweet tweetsWithArray:tweetDictionaries];
+           completion(moreTweets, nil);
        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
            // There was a problem
            completion(nil, error);

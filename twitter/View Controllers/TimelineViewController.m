@@ -140,15 +140,16 @@
 }
 
 -(void)loadMoreData{
-    [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
-        if (tweets) {
+    Tweet *lastTweet = [self.arrayOfTweets lastObject];
+    [[APIManager shared] getHomeTimelineAfterTweet:lastTweet completion:^(NSArray *moreTweets, NSError *error) {
+        if (moreTweets) {
             self.isMoreDataLoading = false;
-            NSLog(@"😎😎😎 Successfully loaded more data for home timeline");
-            self.arrayOfTweets = (NSMutableArray*) tweets;
+            NSLog(@"😎😎😎 Successfully loaded more tweets for home timeline");
+            [self.arrayOfTweets addObjectsFromArray:moreTweets];
             [self.loadingMoreView stopAnimating];
             [self.tweetView reloadData];
         } else {
-            NSLog(@"😫😫😫 Error loading more data for home timeline: %@", error.localizedDescription);
+            NSLog(@"😫😫😫 Error loading more tweets for home timeline: %@", error.localizedDescription);
         }
     }];
 }

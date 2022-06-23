@@ -16,6 +16,8 @@
 
 - (void)getHomeTimelineWithCompletion:(void(^)(NSArray *tweets, NSError *error))completion;
 
+- (void)getHomeTimelineAfterTweet:(Tweet *)lastTweet completion:(void(^)(NSArray *moreTweets, NSError *error))completion;
+
 - (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
 
 - (void)favoriteToggle:(Tweet *)tweet completion:(void (^)(Tweet *, NSError *))completion;
