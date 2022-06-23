@@ -62,17 +62,32 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="Write your tweet here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-Ot-Mns">
-                                <rect key="frame" x="0.0" y="44" width="375" height="204"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write your tweet here." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-Ot-Mns">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="204"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="204" id="0AB-QZ-Alf"/>
+                                </constraints>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jt-m0-FEj">
+                                <rect key="frame" x="336" y="212" width="31" height="15"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <color key="textColor" systemColor="systemGray3Color"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ZsV-ed-ypz"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZsV-ed-ypz" firstAttribute="trailing" secondItem="5jt-m0-FEj" secondAttribute="trailing" constant="8" id="8XR-gG-JgK"/>
+                            <constraint firstItem="5jt-m0-FEj" firstAttribute="top" secondItem="ndF-Ot-Mns" secondAttribute="bottom" constant="8" id="TCq-V2-wIv"/>
+                            <constraint firstItem="ndF-Ot-Mns" firstAttribute="top" secondItem="i8T-m6-pmS" secondAttribute="top" id="dEl-2j-ro5"/>
+                            <constraint firstItem="ndF-Ot-Mns" firstAttribute="leading" secondItem="ZsV-ed-ypz" secondAttribute="leading" id="kJI-rb-F37"/>
+                            <constraint firstItem="ndF-Ot-Mns" firstAttribute="trailing" secondItem="ZsV-ed-ypz" secondAttribute="trailing" id="zKA-My-Sum"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="8nh-RQ-kt8">
                         <barButtonItem key="leftBarButtonItem" title="Close" id="Ylf-Hi-BXr">
@@ -87,12 +102,13 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="charCountLabel" destination="5jt-m0-FEj" id="Fcx-11-Tj8"/>
                         <outlet property="composeTextView" destination="ndF-Ot-Mns" id="npG-hh-3L0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGU-TU-FyU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2420" y="-674"/>
+            <point key="canvasLocation" x="2420" y="-674.21289355322347"/>
         </scene>
         <!--Timeline View Controller-->
         <scene sceneID="1Tv-nE-1AW">
@@ -461,6 +477,9 @@
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray3Color">
+            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

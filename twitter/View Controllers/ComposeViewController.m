@@ -10,10 +10,14 @@
 #import "APIManager.h"
 #import "Tweet.h"
 
+static int const CHARLIMIT = 140;
 
 @interface ComposeViewController () <UITextViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITextView *composeTextView;
+@property (weak, nonatomic) IBOutlet UILabel *charCountLabel;
+
+
 
 @end
 
@@ -22,17 +26,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.composeTextView.delegate = self;
-    
-    // Do any additional setup after loading the view.
+    int charCount = [self.composeTextView.text length];
+    [self updateCharCountLabel:charCount];
 }
 
 - (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
     // TODO: Check the proposed new text character count
-    int characterLimit = 140;
+    int characterLimit = CHARLIMIT;
     NSString *newText = [self.composeTextView.text stringByReplacingCharactersInRange:range withString:text];
     
     // TODO: Allow or disallow the new text
     return newText.length < characterLimit;
+}
+
+- (void)updateCharCountLabel:(int)charCount{
+    self.charCountLabel.text = [NSString stringWithFormat:@"%d/%D", charCount, CHARLIMIT];
 }
 
 /*
@@ -46,6 +54,11 @@
 */
 - (IBAction)closeCompose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
+}
+
+- (void)textViewDidChange:(UITextView *)textView{
+    int charCount = [self.composeTextView.text length];
+    [self updateCharCountLabel:charCount];
 }
 
 //- (void)postStatusWithText:(NSString *)text completion:(void (^)(Tweet *, NSError *))completion;
