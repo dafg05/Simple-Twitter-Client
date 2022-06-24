@@ -2,7 +2,7 @@
 
 **Simple Twitter Client** is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: **20** hours spent in total
+Time spent: **25** hours spent in total
 
 ## User Stories
 
@@ -26,8 +26,8 @@ The following **stretch** features are implemented:
 **A user could**
 
 - [x] Be able to **unlike** or **un-retweet** by tapping a liked or retweeted Tweet button, respectively. (Doing so will decrement the count for each)
-- [ ] Click on links that appear in Tweets
-- [ ] See embedded media in Tweets that contain images or videos
+- [x] Click on links that appear in Tweets
+- [x] See embedded media in Tweets that contain images or videos
 - [ ] Reply to any Tweet (**2 points**)
   - Replies should be prefixed with the username
   - The `reply_id` should be set when posting the tweet
@@ -52,7 +52,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/gallery/zP8ULGA' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://imgur.com/gallery/LKlYTjI' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 

@@ -9,6 +9,7 @@
 #import "TweetDetailsViewController.h"
 #import "Tweet.h"
 #import "APIManager.h"
+#import "WebKit/WebKit.h"
 
 @interface TweetDetailsViewController ()
 
@@ -18,12 +19,13 @@
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
-@property (weak, nonatomic) IBOutlet UILabel *tweetText;
+@property (weak, nonatomic) IBOutlet UITextView *tweetText;
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
 @property (weak, nonatomic) IBOutlet UILabel *favCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
+@property (strong, nonatomic) IBOutlet WKWebView *mediaWebView;
 
 
 @end
@@ -87,9 +89,14 @@
     self.userLabel.text = self.tweet.user.name;
     self.screenNameLabel.text = self.tweet.user.screenName;
     self.createdAtLabel.text = self.tweet.createdAtString;
-    self.tweetText.text = self.tweet.text;
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%i",self.tweet.retweetCount];
     self.favCountLabel.text = [NSString stringWithFormat:@"%i",self.tweet.favoriteCount];
+    
+    self.tweetText.text = self.tweet.text;
+    self.tweetText.dataDetectorTypes = (UIDataDetectorTypeLink);
+    self.tweetText.editable = NO;
+    self.tweetText.selectable = YES;
+    self.tweetText.userInteractionEnabled = YES; // YES by default
     
     // profile pic
     NSString *URLString = self.tweet.user.profilePicture;
@@ -123,6 +130,20 @@
     UIImage *replyImage = [UIImage imageNamed:@"reply-icon.png"];
     [self.replyButton setImage:replyImage forState:UIControlStateNormal];
     [self.replyButton setTitle:@"" forState:UIControlStateNormal];
+    
+    // display media contained in tweet
+    // for now, only display the first item in the media array
+    // TODO: make the height, width and aspect ratio dynamic
+    // TODO: figure out how to change corner radius on a webview
+    if (self.tweet.mediaArray){
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        [configuration setAllowsInlineMediaPlayback:YES];
+        NSURL *mediaUrl = [NSURL URLWithString:self.tweet.mediaArray[0][@"media_url_https"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:mediaUrl];
+        [self.mediaWebView loadRequest:request];
+    } else{
+        self.mediaWebView.hidden = YES;
+    }
 }
 
 /*
