@@ -9,15 +9,15 @@
 #import "TweetCell.h"
 #import "APIManager.h"
 #import "DateTools.h"
+#import "WebKit/WebKit.h"
 
 @interface TweetCell ()
 
+// TODO: At the moment both TweetCell.m and TweetDetailsViewController.m share much of the same code. A way to avoid this repeat code is to create a customView called TweetContents view, and wrap all of the code in TweetCell.m and TweetDetailsViewController.m in that view.
+
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
-// TODO: add screen name
 @property (weak, nonatomic) IBOutlet UILabel *createdAtLabel;
 @property (weak, nonatomic) IBOutlet UILabel *tweetText;
-// TODO: add timestamp
-// TODO: add images for buttons
 @property (weak, nonatomic) IBOutlet UIButton *retweetButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UIButton *favButton;
@@ -25,6 +25,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *userProfilePic;
 @property (weak, nonatomic) IBOutlet UIButton *replyButton;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
+@property (strong, nonatomic) IBOutlet WKWebView *mediaWebView;
+
 
 @end
 
@@ -129,6 +131,20 @@
     [self.replyButton setImage:replyImage forState:UIControlStateNormal];
     [self.replyButton setTitle:@"" forState:UIControlStateNormal];
     
+    // display media contained in tweet
+    // for now, only display the first item in the media array
+    // TODO: make the height, width and aspect ratio dynamic
+    // TODO: figure out how to change corner radius on a webview
+    if (self.tweet.mediaArray){
+        WKWebViewConfiguration *configuration = [[WKWebViewConfiguration alloc] init];
+        [configuration setAllowsInlineMediaPlayback:YES];
+        NSURL *mediaUrl = [NSURL URLWithString:self.tweet.mediaArray[0][@"media_url_https"]];
+        NSURLRequest *request = [NSURLRequest requestWithURL:mediaUrl];
+        [self.mediaWebView loadRequest:request];
+        self.mediaWebView.layer.cornerRadius = 25; // not working
+    } else{
+        self.mediaWebView.hidden = YES;
+    }
 }
 
 @end

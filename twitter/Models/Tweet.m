@@ -20,7 +20,6 @@
         if (originalTweet != nil) {
             NSDictionary *userDictionary = dictionary[@"user"];
             self.retweetedByUser = [[User alloc] initWithDictionary:userDictionary];
-
             // Change tweet to original tweet
             dictionary = originalTweet;
         }
@@ -30,6 +29,8 @@
         self.favorited = [dictionary[@"favorited"] boolValue];
         self.retweetCount = [dictionary[@"retweet_count"] intValue];
         self.retweeted = [dictionary[@"retweeted"] boolValue];
+        self.mediaArray = dictionary[@"entities"][@"media"];
+        NSLog([NSString stringWithFormat:@"%@", self.mediaArray]);
 
         // initialize user
         NSDictionary *user = dictionary[@"user"];
@@ -43,7 +44,6 @@
         formatter.dateFormat = @"E MMM d HH:mm:ss Z y";
         // Convert String to Date
         NSDate *date = [formatter dateFromString:createdAtOriginalString];
-        
         
         self.createdAtString = [date shortTimeAgoSinceNow];
     }

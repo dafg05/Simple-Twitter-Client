@@ -31,6 +31,15 @@
             [self performSegueWithIdentifier:@"loginSegue" sender:nil];
         } else {
             NSLog(@"%@", error.localizedDescription);
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Login Error"
+                                           message:[NSString stringWithFormat:@"%@.\nDid you add your personal api keys to Keys.plist?", error.localizedDescription]
+                                           preferredStyle:UIAlertControllerStyleAlert];
+
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+               handler:^(UIAlertAction * action) {}];
+
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
         }
     }];
 }

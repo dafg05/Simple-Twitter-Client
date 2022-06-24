@@ -16,7 +16,6 @@
 #import "TweetDetailsViewController.h"
 #import "InfiniteScrollActivityView.h"
 
-
 @interface TimelineViewController () <UITableViewDataSource, ComposeViewControllerDelegate, UITableViewDelegate, UIScrollViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tweetView;
@@ -49,7 +48,6 @@
     insets.bottom += InfiniteScrollActivityView.defaultHeight;
     self.tweetView.contentInset = insets;
     
-    // TODO: Ask about syntax of this call
     // Get timeline
     [[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error) {
         if (tweets) {
@@ -133,7 +131,7 @@
             CGRect frame = CGRectMake(0, self.tweetView.contentSize.height, self.tweetView.bounds.size.width, InfiniteScrollActivityView.defaultHeight);
             self.loadingMoreView.frame = frame;
             [self.loadingMoreView startAnimating];
-            
+        
             [self loadMoreData];
         }
     }

@@ -11,6 +11,9 @@
 #import "APIManager.h"
 
 @interface TweetDetailsViewController ()
+
+// TODO: At the moment both TweetCell.m and TweetDetailsViewController.m share much of the same code. A way to avoid this repeat code is to create a customView called TweetContents view, and wrap all of the code in TweetCell.m and TweetDetailsViewController.m in that view.
+
 @property (weak, nonatomic) IBOutlet UIImageView *userProfilePic;
 @property (weak, nonatomic) IBOutlet UILabel *userLabel;
 @property (weak, nonatomic) IBOutlet UILabel *screenNameLabel;
