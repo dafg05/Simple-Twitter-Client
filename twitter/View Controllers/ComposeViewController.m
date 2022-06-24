@@ -12,10 +12,11 @@
 
 static int const CHARLIMIT = 140;
 
-@interface ComposeViewController () <UITextViewDelegate>
+@interface ComposeViewController () <UITextFieldDelegate>
 
-@property (weak, nonatomic) IBOutlet UITextView *composeTextView;
+@property (weak, nonatomic) IBOutlet UITextField *composeTextField;
 @property (weak, nonatomic) IBOutlet UILabel *charCountLabel;
+@property NSString *defaultPlaceholder;
 
 
 
@@ -25,17 +26,20 @@ static int const CHARLIMIT = 140;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.composeTextView.delegate = self;
-    int charCount = [self.composeTextView.text length];
+    self.composeTextField.delegate = self;
+    self.composeTextField.text = @"Write your tweet here...";
+    self.composeTextField.textColor = UIColor.lightGrayColor;
+    int charCount = 0;
+    
     [self updateCharCountLabel:charCount];
 }
 
-- (BOOL)textView:(UITextView *)textView shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
-    // TODO: Check the proposed new text character count
+- (BOOL)textView:(UITextField *)textField shouldChangeTextInRange:(NSRange)range replacementText:(NSString *)text{
+    // Check the proposed new text character count
     int characterLimit = CHARLIMIT;
-    NSString *newText = [self.composeTextView.text stringByReplacingCharactersInRange:range withString:text];
+    NSString *newText = [self.composeTextField.text stringByReplacingCharactersInRange:range withString:text];
     
-    // TODO: Allow or disallow the new text
+    // Allow or disallow the new text
     return newText.length < characterLimit;
 }
 
@@ -43,21 +47,16 @@ static int const CHARLIMIT = 140;
     self.charCountLabel.text = [NSString stringWithFormat:@"%d/%D", charCount, CHARLIMIT];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 - (IBAction)closeCompose:(id)sender {
     [self dismissViewControllerAnimated:true completion:nil];
 }
 
 - (void)textViewDidChange:(UITextView *)textView{
-    int charCount = [self.composeTextView.text length];
+    if (self.composeTextField.textColor == UIColor.lightGrayColor){
+        self.composeTextField.textColor = UIColor.blackColor;
+        self.composeTextField.text = @"";
+    }
+    int charCount = [self.composeTextField.text length];
     [self updateCharCountLabel:charCount];
 }
 
@@ -65,7 +64,7 @@ static int const CHARLIMIT = 140;
 
 //[[APIManager shared] getHomeTimelineWithCompletion:^(NSArray *tweets, NSError *error)
 - (IBAction)sendTweet:(id)sender {
-    NSString *tweetContent =  self.composeTextView.text;
+    NSString *tweetContent =  self.composeTextField.text;
     [[APIManager shared] postStatusWithText:tweetContent completion:^(Tweet *tweet, NSError *error) {
         if (error){
             NSLog(@"😫😫😫 Error posting tweet: %@", error.localizedDescription);
@@ -77,5 +76,15 @@ static int const CHARLIMIT = 140;
     }];
     [self dismissViewControllerAnimated:true completion:nil];
 }
+
+/*
+#pragma mark - Navigation
+
+// In a storyboard-based application, you will often want to do a little preparation before navigation
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    // Get the new view controller using [segue destinationViewController].
+    // Pass the selected object to the new view controller.
+}
+*/
 
 @end
