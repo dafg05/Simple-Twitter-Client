@@ -64,7 +64,7 @@ static NSString * const baseURLString = @"https://api.twitter.com";
 
 - (void)getHomeTimelineAfterTweet:(Tweet *)lastTweet completion:(void(^)(NSArray *moreTweets, NSError *error))completion {
     
-    NSDictionary *parameters = @{@"since_id": lastTweet.idStr};
+    NSDictionary *parameters = @{@"max_id": lastTweet.idStr};
     // Create a GET Request
     [self GET:@"1.1/statuses/home_timeline.json"
        parameters:parameters progress:nil success:^(NSURLSessionDataTask * _Nonnull task, NSArray *  _Nullable tweetDictionaries) {
