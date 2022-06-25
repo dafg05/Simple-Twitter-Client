@@ -41,28 +41,25 @@ The following **stretch** features are implemented:
 
 The following **additional** features are implemented:
 
-- [ ] Alert users if no Keys.plist is present
+- [x] Alert users if no Keys.plist is present
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 
 1. Discuss in-depth the API manager
 2. Discuss the role of delegates 
+3. Discuss formatting of images when using a webview instead of UIImage view
 
 ## Video Walkthrough
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/gallery/LKlYTjI' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://imgur.com/a/LKlYTjI' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [Kap](https://getkap.co/).
 
-## Notes
-
-Describe any challenges encountered while building the app.
 
 ## Credits
 
-List an 3rd party libraries, icons, graphics, or other assets you used in your app.
 
 - [AFNetworking](https://github.com/AFNetworking/AFNetworking) - networking task library
 
